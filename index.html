@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio – Dahya Izzul Islam | Data Scientist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg-soft: #111827;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow-soft: 0 24px 60px rgba(15,23,42,0.85);
+      --shadow-card: 0 18px 40px rgba(15,23,42,0.8);
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
+    }
+
+    /* NAVBAR */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-inner {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.25);
+      background: radial-gradient(circle at top left, #1e293b 0, #020617 55%);
+      box-shadow: 0 16px 40px rgba(15,23,42,0.8);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex: 1;
+    }
+
+/* Fullscreen Image Modal (Zoom On Click) */
+.img-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 40px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+}
+
+.img-modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+.img-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #fff;
+  font-size: 48px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.img-modal-close:hover {
+  color: #38bdf8;
+}
+
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #38bdf8, #0ea5e9 45%, #0369a1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 2px rgba(56,189,248,0.4);
+    }
+
+    .logo-dot span {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #0b1120;
+    }
+
+    .nav-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      margin-left: auto;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
+    }
+
+    .nav-links a:hover {
+      color: #e5e7eb;
+      border-color: rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .nav-pill {
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+      background: rgba(15,23,42,0.9);
+    }
+
+    /* HERO */
+    .hero {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.3fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+      .nav-links {
+        justify-content: flex-end;
+        width: 100%;
+      }
+    }
+
+    .hero-main {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, #111827 0, #020617 60%);
+      box-shadow: var(--shadow-soft);
+      padding: 26px 26px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 3vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(to right, #38bdf8, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+      background: rgba(15,23,42,0.7);
+    }
+
+    .badge-accent {
+      border-color: rgba(56,189,248,0.8);
+      background: rgba(8,47,73,0.85);
+      color: #e0f2fe;
+    }
+
+    .hero-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-footer strong {
+      color: #e5e7eb;
+    }
+
+    .hero-metric {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .metric-number {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* PROFILE CARD */
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, #020617 0, #020617 60%);
+      box-shadow: var(--shadow-card);
+      padding: 18px 18px 16px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .card-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.28);
+    }
+
+    .profile-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .profile-role {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .profile-list {
+      font-size: 12px;
+      color: var(--muted);
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .profile-list li::before {
+      content: "• ";
+      color: var(--accent);
+    }
+
+    /* SECTION LAYOUT */
+    section {
+      margin-top: 32px;
+    }
+
+    .section-header {
+      margin-bottom: 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    .section-pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--muted);
+    }
+
+    /* EXPERIENCE */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 840px) {
+      .exp-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .exp-card {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, #020617 0, #020617 60%);
+      padding: 14px 16px 13px;
+    }
+
+    .exp-role {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .exp-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--muted);
+    }
+
+    .exp-list {
+      font-size: 12px;
+      color: var(--muted);
+      padding-left: 16px;
+    }
+
+    .exp-list li {
+      margin-bottom: 4px;
+    }
+
+    /* PROJECTS */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 960px) {
+      .proj-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .proj-card {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, #020617 0, #020617 60%);
+      padding: 14px 15px 13px;
+    }
+
+    .proj-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .proj-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    /* DASHBOARD GALLERY */
+    .dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px,1fr));
+  gap: 22px;
+}
+
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;   /* Tambahkan ini */
+}
+
+.dash-title {
+  flex: 1;     /* supaya judul mengambil ruang horizontal */
+  white-space: normal;
+}
+
+    .dash-card {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, #020617 0, #020617 60%);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dash-img-wrap {
+      position: relative;
+      padding-top: 60%;
+      overflow: hidden;
+    }
+
+    .dash-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.1);
+      transform: scale(1.02);
+    }
+
+    .dash-body {
+      padding: 10px 11px 9px;
+    }
+
+    .dash-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .dash-caption {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 840px) {
+      .skills-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--muted);
+    }
+
+    .chip-strong {
+      border-color: rgba(56,189,248,0.9);
+      background: rgba(8,47,73,0.9);
+      color: #e0f2fe;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 32px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(148,163,184,0.4);
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+      border-bottom-style: solid;
+    }
+/* Smooth Animation for Modal Zoom */
+@keyframes modalFadeZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.img-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 40px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  animation: fadeInBg 0.35s ease;
+}
+
+@keyframes fadeInBg {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.img-modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  animation: modalFadeZoom 0.35s ease;
+}
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.dash-pill-ai {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(56,189,248,0.8);
+  background: rgba(8,47,73,0.9);
+  color: #e0f2fe;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+/* Header layout for Key Projects titles with badge */
+.proj-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+/* Badge style similar to Dashboards & Visuals */
+.proj-pill-ai {
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(56,189,248,0.8);
+  background: rgba(8,47,73,0.9);
+  color: #e0f2fe;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+/* Keep title flexible: avoid wrapping into many lines */
+.proj-title {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="nav-left">
+          <div class="logo-dot"><span></span></div>
+          <div class="nav-title">Dahya Izzul Islam · Data Scientist</div>
+        </div>
+        <nav class="nav-links">
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#dashboards">Dashboards</a>
+          <a href="#skills">Skills</a>
+        </nav>
+        <div class="nav-pill">Portfolio</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-main">
+        <div class="hero-tagline">Exploration · Analytics · SNA · LLM Systems</div>
+<h1 class="hero-title">
+  Transforming multi-source and open-source data into
+  <span class="hero-highlight">actionable intelligence.</span>
+</h1>
+        <p class="hero-subtitle">
+  Data Scientist di <strong>PT Ebdesk Tekhnologi</strong> dengan pengalaman menangani
+  klien <strong>BUMN</strong> seperti <strong>Pertamina Hulu Energi (PHE)</strong> dan
+  <strong>ASDP Indonesia Ferry</strong>. Sebelumnya berpengalaman di sektor
+  <strong>swasta</strong> (United Tractors) serta <strong>pemerintahan & projek politik</strong>.
+  Memiliki keahlian dalam <em>exploration analytics, dashboarding, data pipeline,
+  fraud & anomaly analysis,</em> serta <em>social network analysis</em> untuk memetakan
+  pola hubungan, tendensi dukungan, dan pengaruh antar entitas. Juga terlibat dalam
+  pengembangan <em>Knowledge Assistant</em> berbasis LLM untuk kebutuhan analitik internal.
+</p>
+        <div class="hero-badges">
+  <span class="badge-accent">Python · SQL · PostgreSQL</span>
+  <span class="badge">Tableau / Power BI</span>
+  <span class="badge">RFM & Fraud Analysis</span>
+  <span class="badge">Exploration & Geoscience Data</span>
+  <span class="badge">LLM Workflow Design</span>
+  <span class="badge">Gephi · Social Network Analysis</span>
+</div>
+        <div class="hero-footer">
+          <div class="hero-metric">
+            <span class="metric-number">10k+</span>
+            <span>well metadata distandardisasi lintas sumber (IHS, Woodmac, CNC)</span>
+          </div>
+          <div class="hero-metric">
+            <span class="metric-number">3</span>
+            <span>domain utama: eksplorasi migas, penyeberangan, & knowledge system</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE SIDE CARD -->
+      <aside class="hero-side">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Profile</div>
+            <div class="card-dot"></div>
+          </div>
+          <div class="profile-name">Dahya Izzul Islam</div>
+          <div class="profile-role">Data Scientist / Data Analyst</div>
+          <ul class="profile-list">
+  <li>Exploration analytics – Pertamina Hulu Energi (via PT Ebdesk Tekhnologi)</li>
+  <li>Ticketing & operational analytics – ASDP Indonesia Ferry</li>
+  <li>Heavy equipment & operational analytics – United Tractors (swasta)</li>
+  <li>Analitik pemerintahan & politik – projek Pileg/Pilpres dan Kemendagri</li>
+  <li>Social Network Analysis (SNA): pemetaan relasi, tendensi dukungan, dan influence antar entitas</li>
+  <li>Memanfaatkan data internal & open-source untuk insight dan pengambilan keputusan</li>
+  <li>Merancang struktur data & pipeline sampai level database</li>
+  <li>Membantu user subsurface, operasional, & manajemen membaca insight data</li>
+</ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Focus Area</div>
+          </div>
+          <ul class="profile-list">
+  <li>Digitalisasi dokumen eksplorasi menjadi metadata well terstruktur</li>
+  <li>Dashboard eksplorasi (wells, reservoir, geologic time) menggunakan Fusion</li>
+  <li>Fraud & RFM analysis untuk data tiket kapal penyeberangan</li>
+  <li>Analitik operasional & performance untuk heavy equipment – United Tractors</li>
+  <li>Social Network Analysis (SNA) untuk pemetaan hubungan & kecenderungan dukungan</li>
+  <li>Pemanfaatan data open-source sebagai pelengkap insight eksplorasi & operasional</li>
+  <li>Rancangan Knowledge Assistant / LLM dengan data internal PHE</li>
+</ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-header">
+        <h2 class="section-title">Experience</h2>
+        <span class="section-pill">Industry: Oil & Gas · Transportation</span>
+      </div>
+      <div class="exp-grid">
+        <!-- PHE -->
+        <!-- OTHER EXPERIENCE -->
+	<article class="exp-card">
+  <h3 class="exp-role">Data Scientist / Data Analyst – Other Sectors</h3>
+  <div class="exp-meta">United Tractors · Projek Politik · Kemendagri · 2019 – 2023</div>
+  <div class="exp-tags">
+    <span class="tag">Heavy Equipment Analytics</span>
+    <span class="tag">Political Data</span>
+    <span class="tag">Government Project</span>
+    <span class="tag">Dashboard & Reporting</span>
+  </div>
+  <ul class="exp-list">
+    <li>Mengolah dan menganalisis data penjualan & operasional di sektor alat berat (United Tractors).</li>
+    <li>Membangun pipeline dan analitik untuk data pemilu (Pileg & Pilpres) – perolehan suara, TPS, dan profiling kandidat.</li>
+    <li>Mengembangkan analitik & tooling untuk kebutuhan pemerintahan (misalnya pengolahan regulasi / Perda di Kemendagri).</li>
+    <li>Membuat dashboard dan report untuk kebutuhan manajemen & stakeholder non-teknis.</li>
+  </ul>
+</article>
+
+
+        <!-- ASDP -->
+        <article class="exp-card">
+          <h3 class="exp-role">Data Analyst – Ticketing & Operational Analytics</h3>
+          <div class="exp-meta">PT ASDP Indonesia Ferry · 2023 – 2024</div>
+          <div class="exp-tags">
+            <span class="tag">Fraud Analysis</span>
+            <span class="tag">RFM</span>
+            <span class="tag">Fusion & Tableau</span>
+            <span class="tag">Python & SQL</span>
+          </div>
+          <ul class="exp-list">
+            <li>Membersihkan & menstandarisasi data tiket kapal dan data lintasan untuk analisis operasional.</li>
+            <li>Membangun pipeline digitalisasi laporan manual → basis data terstruktur.</li>
+            <li>Menerapkan RFM analysis untuk segmentasi pelanggan & pola penggunaan penyeberangan.</li>
+            <li>Menganalisis pola fraud transaksi tiket (pembatalan, diskon, anomali penjualan).</li>
+            <li>Membangun dashboard operasional di Fusion/Tableau: volume penumpang, utilisasi jadwal, dan indikator fraud.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-header">
+        <h2 class="section-title">Key Projects</h2>
+        <span class="section-pill">Hands-on portfolio</span>
+      </div>
+      <div class="proj-grid">
+        <article class="proj-card">
+          <h3 class="proj-title">Exploration Wells Dashboard – PHE</h3>
+          <p class="proj-desc">
+            Dashboard eksplorasi yang menampilkan status teknis ribuan sumur (completed, plugged & abandoned, suspended),
+            distribusi onshore–offshore, serta klasifikasi lingkungan sumur. Data bersumber dari integrasi IHS, CNC, dan
+            sistem internal PHE.
+          </p>
+          <ul class="exp-list">
+            <li>Membangun table agregasi di PostgreSQL untuk status well, environment, dan klasifikasi kedalaman.</li>
+            <li>Menggunakan Fusion sebagai UI utama: kartu KPI, grafik batang klasifikasi offshore, pie chart onshore/offshore.</li>
+            <li>Menjaga konsistensi penamaan sumur & contract area agar cocok dengan berbagai sumber data.</li>
+          </ul>
+        </article>
+
+        <article class="proj-card">
+          <h3 class="proj-title">Ticketing Data Pipeline & Fraud Analytics – ASDP</h3>
+          <p class="proj-desc">
+            Pipeline end-to-end dari data tiket mentah sampai insight operasional: pembersihan data, pemetaan lintasan, RFM,
+            dan fraud detection.
+          </p>
+          <ul class="exp-list">
+            <li>Mengolah data tiket dengan Python & SQL, kemudian menyimpannya ke PostgreSQL untuk analitik.</li>
+            <li>Mengembangkan model RFM untuk segmentasi pelanggan dan monitoring penjualan lintasan.</li>
+            <li>Membuat indikator fraud berbasis rule & anomaly patterns dari data transaksi.</li>
+          </ul>
+        </article>
+<article class="proj-card">
+  <h3 class="proj-title">Political Social Network Analysis & Campaign Intelligence – Pilpres 2024</h3>
+  <p class="proj-desc">
+    Analisis jaringan percakapan publik untuk memetakan klaster dukungan, narasi dominan,
+    influencer, dan pola penyebaran opini pada kampanye Ganjar–Mahfud. Menggunakan Gephi
+    dan text mining untuk membaca tren percakapan serta mengidentifikasi operasi trending
+    dan sentimen terhadap kandidat.
+  </p>
+  <ul class="exp-list">
+    <li>Membangun graf interaksi publik (mentions, replies, hashtags) untuk melihat struktur kelompok.</li>
+    <li>Mengidentifikasi klaster narasi: dukungan, kontra-narasi, dan kampanye organik vs terkoordinasi.</li>
+    <li>Memberikan insight strategis berbasis data untuk membaca kekuatan opini publik.</li>
+  </ul>
+</article>
+<article class="proj-card">
+  <div class="proj-header">
+    <h3 class="proj-title">RAG-based Exploration Assistant – PHE</h3>
+    <span class="proj-pill-ai">AI · SELF-DEVELOPMENT</span>
+  </div>
+  <p class="proj-desc">
+    Proyek pengembangan diri di bidang AI: prototype LLM assistant berbasis
+    Retrieval-Augmented Generation (RAG) untuk membaca dokumen prognosis &amp;
+    drilling summary, mengekstrak insight geoscience, dan menjawab pertanyaan
+    teknis terkait sejarah pengeboran, target reservoir, dan surface location.
+  </p>
+<ul class="exp-list">
+  <li>Membangun index BM25 untuk pencarian informasi dalam dokumen PDF eksplorasi.</li>
+  <li>Melakukan ekstraksi otomatis (surface location, primary target, rig, reservoir interval,
+      dan metadata well lain) dari teks tidak terstruktur.</li>
+  <li>Menggabungkan retrieval BM25 dengan jawaban naratif berbasis LLM untuk membantu
+      geoscientist memahami dokumen lebih cepat.</li>
+</ul>
+
+</article>
+
+
+      </div>
+    </section>
+
+    <!-- DASHBOARD GALLERY -->
+    <!-- DASHBOARD GALLERY -->
+<section id="dashboards">
+  <div class="section-header">
+    <h2 class="section-title">Dashboards & Visuals</h2>
+    <span class="section-pill">Real project screenshots & concepts</span>
+  </div>
+
+  <div class="dash-grid">
+    <!-- 1: PHE Wells Dashboard -->
+    <article class="dash-card">
+      <div class="dash-img-wrap">
+        <img src="images/phe-wells-dashboard.png" alt="PHE Wells Exploration Dashboard" />
+      </div>
+      <div class="dash-body">
+        <div class="dash-title">PHE · Wells Exploration Dashboard</div>
+        <p class="dash-caption">
+          Menampilkan jumlah total wells, status teknis (completed, P&amp;A, suspended),
+          komposisi onshore–offshore, dan klasifikasi environment. Dibangun di Fusion
+          dengan sumber data PostgreSQL & metadata well terstandardisasi.
+        </p>
+      </div>
+    </article>
+
+    <!-- 2: ASDP Operational / Ticketing Dashboard -->
+    <article class="dash-card">
+      <div class="dash-img-wrap">
+        <img src="images/asdp-ticketing-dashboard.png" alt="ASDP Ticketing & Operational Dashboard" />
+      </div>
+      <div class="dash-body">
+        <div class="dash-title">ASDP · Ticketing & Operational Analytics</div>
+        <p class="dash-caption">
+          Dashboard untuk memonitor volume penumpang & kendaraan per lintasan, utilisasi kapal,
+          dan segmentasi pelanggan berbasis RFM. Dipakai tim operasional sebagai dasar
+          pengambilan keputusan harian.
+        </p>
+      </div>
+    </article>
+
+    <!-- 4: Political SNA Graph -->
+    <article class="dash-card">
+      <div class="dash-img-wrap">
+        <!-- Pakai SS Gephi / network graph kamu -->
+        <img src="images/political-sna-graph.png" alt="Political Support Social Network Analysis" />
+      </div>
+      <div class="dash-body">
+        <div class="dash-title">Political Analytics · Social Network Analysis</div>
+        <p class="dash-caption">
+  Social Network Analysis untuk memetakan percakapan publik terkait kampanye Ganjar–Mahfud 
+  pada Pilpres 2024. Analisis ini mengidentifikasi klaster kelompok, topik dominan,
+  sentimen, serta pola penyebaran narasi di media sosial. Hasilnya digunakan untuk 
+  memahami kekuatan jaringan pendukung, melihat operasi trending, dan membaca arah 
+  pergerakan opini sebagai dasar penyusunan strategi komunikasi yang berbasis data.
+</p>
+      </div>
+    </article>
+
+    <!-- 5: Political Campaign Dashboard -->
+    <article class="dash-card">
+      <div class="dash-img-wrap">
+        <!-- Pakai SS dashboard pemenangan politik -->
+        <img src="images/political-campaign-dashboard.png" alt="Political Campaign Performance Dashboard" />
+      </div>
+      <div class="dash-body">
+        <div class="dash-title">Political · Campaign Performance Dashboard</div>
+        <p class="dash-caption">
+          Dashboard pemenangan politik yang merangkum perolehan suara, performa per TPS,
+          tren kampanye, serta korelasi dengan aktivitas lapangan & jaringan dukungan.
+          Membantu tim memahami strategi mana yang paling efektif.
+        </p>
+      </div>
+    </article>
+
+    <!-- 3: PHE RAG + LLM Exploration Assistant (self-development) -->
+<article class="dash-card">
+  <div class="dash-img-wrap">
+    <img src="images/phe-rag-console.png" alt="PHE RAG Exploration Assistant Console" />
+  </div>
+  <div class="dash-body">
+    <div class="dash-header">
+      <div class="dash-title">PHE · RAG-based Exploration Assistant</div>
+      <span class="dash-pill-ai">AI · Self-development</span>
+    </div>
+    <p class="dash-caption">
+      Eksperimen pribadi untuk pengembangan diri di bidang AI: membangun prototipe RAG &amp; LLM
+      yang membaca dokumen prognosis sumur dan mengekstrak informasi penting
+      (surface location, primary target, rig, dan lainnya). Menggabungkan indexing BM25
+      dengan ekstraksi naratif berbasis AI untuk membantu geoscientist memahami dokumen lebih cepat.
+    </p>
+  </div>
+</article>
+
+  </div>
+</section>
+
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-header">
+        <h2 class="section-title">Skills & Stack</h2>
+        <span class="section-pill">Technical & domain</span>
+      </div>
+      <div class="skills-grid">
+        <div class="proj-card">
+          <h3 class="proj-title">Technical</h3>
+          <div class="chip-row" style="margin-bottom:8px;">
+            <span class="chip chip-strong">Python (pandas, numpy, regex)</span>
+            <span class="chip chip-strong">SQL & PostgreSQL</span>
+            <span class="chip">Data Modelling & ETL</span>
+            <span class="chip">Parsing dokumen & OCR</span>
+            <span class="chip">Dashboard Fusion</span>
+            <span class="chip">Tableau & Power BI (dasar)</span>
+          </div>
+          <div class="chip-row">
+  <span class="chip">RFM & Customer Segmentation</span>
+  <span class="chip">Fraud & Anomaly Analysis</span>
+  <span class="chip">Election / Political Data Analytics</span>
+  <span class="chip">Regulation / Document Analytics (Perda, dll.)</span>
+  <span class="chip">LLM Workflow / Retrieval Design</span>
+  <span class="chip">Metadata Design (well, reservoir)</span>
+</div>
+
+        </div>
+
+        <div class="proj-card">
+          <h3 class="proj-title">Domain</h3>
+          <div class="chip-row" style="margin-bottom:8px;">
+            <span class="chip chip-strong">Oil & Gas Exploration</span>
+            <span class="chip">Well prognosis & drilling summary</span>
+            <span class="chip">Stratigrafi & reservoir zone</span>
+          </div>
+          <div class="chip-row">
+            <span class="chip chip-strong">Ticketing & Ferry Operations</span>
+            <span class="chip">Operational performance metric</span>
+            <span class="chip">Business communication & stakeholder alignment</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>© <span id="year"></span> Dahya Izzul Islam · Data Scientist / Data Analyst</div>
+      <div class="footer-links">
+        <!-- Ganti dengan link asli kamu -->
+        <a href="mailto:dahyaizzulislam@gmail.com">Email</a>
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Tahun dinamis di footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+<!-- IMAGE MODAL OVERLAY -->
+<div id="img-modal" class="img-modal">
+  <span class="img-modal-close">&times;</span>
+  <img class="img-modal-content" id="img-modal-display">
+</div>
+<script>
+  const images = document.querySelectorAll(".dash-img-wrap img");
+  const modal = document.getElementById("img-modal");
+  const modalImg = document.getElementById("img-modal-display");
+  const closeBtn = document.querySelector(".img-modal-close");
+
+  images.forEach(img => {
+    img.style.cursor = "zoom-in";
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      modalImg.src = img.src; // ambil gambar yang diklik
+    });
+  });
+
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  };
+
+  modal.onclick = function(e) {
+    if (e.target === modal) modal.style.display = "none";
+  };
+</script>
+<script>
+  const images = document.querySelectorAll(".dash-img-wrap img");
+  const modal = document.getElementById("img-modal");
+  const modalImg = document.getElementById("img-modal-display");
+  const closeBtn = document.querySelector(".img-modal-close");
+
+  images.forEach(img => {
+    img.style.cursor = "zoom-in";
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+
+      // Reset animation (agar animasi tetap jalan setiap klik)
+      modalImg.style.animation = "none";
+      void modalImg.offsetWidth; // trigger reflow
+      modalImg.style.animation = "modalFadeZoom 0.35s ease";
+
+      modalImg.src = img.src;
+    });
+  });
+
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  };
+
+  modal.onclick = function(e) {
+    if (e.target === modal) modal.style.display = "none";
+  };
+</script>
+
+</body>
+</html>
